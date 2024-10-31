@@ -26,6 +26,18 @@ def generate_ssq_ticket():
 
     return f"红色球: {' '.join(f'{num:02d}' for num in selected_red_balls)} | 蓝色球: {blue_ball:02d}"
 
+# 生成排列3号码
+def generate_arrangement_3_ticket():
+    digits = [str(x) for x in range(10)]  # 0-9
+    selected_digits = sample(digits, 3)  # 选3个数字
+    return " | ".join(selected_digits)
+
+# 生成排列5号码
+def generate_arrangement_5_ticket():
+    digits = [str(x) for x in range(10)]  # 0-9
+    selected_digits = sample(digits, 5)  # 选5个数字
+    return " | ".join(selected_digits)
+
 # 生成号码的主函数
 def generate_tickets():
     try:
@@ -46,6 +58,12 @@ def generate_tickets():
     elif lottery_type == "双色球":
         for _ in range(n):
             result_text.insert(tk.END, generate_ssq_ticket() + "\n")
+    elif lottery_type == "排列3":
+        for _ in range(n):
+            result_text.insert(tk.END, generate_arrangement_3_ticket() + "\n")
+    elif lottery_type == "排列5":
+        for _ in range(n):
+            result_text.insert(tk.END, generate_arrangement_5_ticket() + "\n")
 
 # 初始化界面
 root = tk.Tk()
@@ -56,7 +74,7 @@ style.theme_use('clam')  # 选择主题
 # 选择彩票类型
 tk.Label(root, text="请选择彩票类型：", font=("Arial", 12)).grid(row=0, column=0, padx=10, pady=10)
 lottery_type_var = tk.StringVar(value="大乐透")
-lottery_type_menu = ttk.Combobox(root, textvariable=lottery_type_var, values=["大乐透", "双色球"], state="readonly")
+lottery_type_menu = ttk.Combobox(root, textvariable=lottery_type_var, values=["大乐透", "双色球", "排列3", "排列5"], state="readonly")
 lottery_type_menu.grid(row=0, column=1, padx=10, pady=10)
 
 # 输入注数
