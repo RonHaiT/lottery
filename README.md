@@ -18,7 +18,7 @@ pip install pyinstaller
 3. 使用 PyInstaller 打包
 在每个平台上（Windows、macOS、Linux），运行以下命令打包成适合该平台的可执行文件。
 
-bash
+```bash
 复制代码
 pyinstaller --onefile lottery/main.py --name lottery-generator
 此命令的参数说明：
@@ -26,7 +26,7 @@ pyinstaller --onefile lottery/main.py --name lottery-generator
 --onefile：将所有文件打包成一个独立的可执行文件。
 --name：定义生成的可执行文件名称，这里是 lottery-generator。
 运行该命令后，PyInstaller 会在项目根目录下创建一个 dist 文件夹，包含生成的可执行文件。
-
+```
 4. 为每个平台生成文件
 在每个平台上，运行 PyInstaller 来生成相应的文件：
 
@@ -37,19 +37,17 @@ macOS 和 Linux：会生成 lottery-generator（无扩展名）
 5. 生成的可执行文件位置
 运行完毕后，dist 文件夹中将会包含每个平台相应的可执行文件：
 
-bash
-复制代码
+```bash
 dist/
 └── lottery-generator  # Mac 和 Linux
 └── lottery-generator.exe  # Windows
+```
 6. 可选的优化配置
 如果需要图形界面，可以在 PyInstaller 命令中添加 --noconsole 参数，这样在执行时不会弹出控制台窗口：
 
-bash
-复制代码
+```bash
 pyinstaller --onefile --noconsole lottery/main.py --name lottery-generator
-
-
+```
 ## 图形界面
 ```bash
  pyinstaller --onefile --windowed lottery\lottery_gui.py --name lottery-generator
