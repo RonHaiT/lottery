@@ -3,6 +3,7 @@ import tkinter as tk
 from tkinter import messagebox
 from random import randint, sample
 
+
 def generate_dlt_ticket():
     red_balls = [x for x in range(1, 36)]
     selected_red_balls = sample(red_balls, 5)
@@ -15,6 +16,8 @@ def generate_dlt_ticket():
     print("红色球: ", ' '.join(f"{num:02d}" for num in selected_red_balls), end=' | ')
     print("蓝色球: ", ' '.join(f"{num:02d}" for num in selected_blue_balls))
     return f"红色球: {' '.join(f'{num:02d}' for num in selected_red_balls)} | 蓝色球: {' '.join(f'{num:02d}' for num in selected_blue_balls)}"
+
+
 def generate_ssq_ticket():
     red_balls = [x for x in range(1, 34)]
     selected_red_balls = sample(red_balls, 6)
@@ -25,6 +28,8 @@ def generate_ssq_ticket():
     print("红色球: ", ' '.join(f"{num:02d}" for num in selected_red_balls), end=' | ')
     print("蓝色球: ", f"{blue_ball:02d}")
     return f"红色球: {' '.join(f'{num:02d}' for num in selected_red_balls)} | 蓝色球: {blue_ball:02d}"
+
+
 # 生成号码的主函数
 def generate_tickets():
     try:
@@ -45,6 +50,8 @@ def generate_tickets():
     elif lottery_type == "双色球":
         for _ in range(n):
             result_text.insert(tk.END, generate_ssq_ticket() + "\n")
+
+
 # 初始化界面
 root = tk.Tk()
 root.title("彩票号码生成器")
@@ -64,8 +71,12 @@ generate_button = tk.Button(root, text="生成号码", command=generate_tickets)
 generate_button.grid(row=2, column=0, columnspan=2, pady=20)
 
 # 显示结果
-result_text = tk.Text(root, height=10, width=50)
-result_text.grid(row=3, column=0, columnspan=2, padx=10, pady=10)
+result_text = tk.Text(root, height=20, width=70)
+result_text.grid(row=3, column=0, columnspan=2, padx=10, pady=10, sticky='nsew')
+
+root.grid_rowconfigure(3, weight=1)  # 将结果文本所在的行权重设置为 1
+root.grid_columnconfigure(0, weight=1)  # 将第一列的权重设置为 1
+root.grid_columnconfigure(1, weight=1)  # 将第二列的权重设置为 1
 
 # 运行界面
 root.mainloop()
